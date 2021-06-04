@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "580200136435",
+    "project_id": "ebay-clone-2ab3d",
+    "storage_bucket": "ebay-clone-2ab3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580200136435:android:6ba62fcd82a3a54e1a4186",
+        "android_client_info": {
+          "package_name": "com.begin.ebay_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580200136435-300pq1c14qqft40beplbpvngbf49hkub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.begin.ebay_clone",
+            "certificate_hash": "e0b45b6e4b37c9b296ea86d9cc271d5313d56cd0"
+          }
+        },
+        {
+          "client_id": "580200136435-0ubgq020o6fqud4r3kgh4bd584qlq934.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdAcHQRQBIkfzoetP0rIMCm7PA9uDO1NI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580200136435-0ubgq020o6fqud4r3kgh4bd584qlq934.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
