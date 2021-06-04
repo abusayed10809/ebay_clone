@@ -9,4 +9,13 @@ class AppConfig{
   String itemPrice = "price";
   String itemDate = "date";
   String itemImageUrl = "imageUrl";
+
+  String auctionBidCollection = "auctionBidCollection";
+  String documentId = "documentId";
+  String individualBidCollection = "individualBidCollection";
+  String bidAmount = "bidAmount";
+
+  String userCollection = "userCollection";
+  String userName = "userName";
+  String userEmail = "userEmail";
 }

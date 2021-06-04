@@ -1,8 +1,10 @@
+import 'package:ebay_clone/Provider/AuctionProvider.dart';
 import 'package:ebay_clone/Screens/AuthScreen.dart';
 import 'package:ebay_clone/Screens/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 String currentUser;
 
@@ -14,7 +16,15 @@ void main() async{
     currentUser = FirebaseAuth.instance.currentUser.uid;
   }
 
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuctionProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
+
 }
 
 class MyApp extends StatelessWidget {

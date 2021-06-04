@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ebay_clone/Config/AppConfig.dart';
 import 'package:ebay_clone/FirebaseOperations/AuthService.dart';
 import 'package:ebay_clone/Models/AuctionItem.dart';
+import 'package:ebay_clone/Provider/AuctionProvider.dart';
 import 'package:ebay_clone/Screens/AuthScreen.dart';
 import 'package:ebay_clone/Screens/CreateAuction.dart';
 import 'package:ebay_clone/Widgets/AuctionCard.dart';
@@ -10,6 +11,7 @@ import 'package:ebay_clone/Widgets/SharedWidgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -74,7 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: snapshot.data.size,
                       itemBuilder: ((BuildContext context, int index){
                         AuctionItem auctionItem = AuctionItem.jsonToString(snapshot.data.docs[index]);
-                        return buildAuctionCard(context, auctionItem);
+
+                        String documentId = (snapshot.data.docs[index].id);
+
+                        return buildAuctionCard(context, auctionItem, documentId);
                       }),
                     );
                   }

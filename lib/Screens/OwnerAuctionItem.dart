@@ -54,7 +54,8 @@ class _OwnerAuctionItemState extends State<OwnerAuctionItem> {
                       itemCount: snapshot.data.size,
                       itemBuilder: ((BuildContext context, int index){
                         AuctionItem auctionItem = AuctionItem.jsonToString(snapshot.data.docs[index]);
-                        return buildAuctionCard(context, auctionItem);
+                        String documentId = (snapshot.data.docs[index].id);
+                        return buildAuctionCard(context, auctionItem, documentId);
                       }),
                     );
                   }

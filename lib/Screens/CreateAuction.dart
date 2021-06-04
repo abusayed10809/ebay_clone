@@ -244,8 +244,8 @@ class _CreateAuctionState extends State<CreateAuction> {
   Future<void> _selectDate(BuildContext context) async {
     DateTime picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
+      initialDate: DateTime.now().add(Duration(days: 1)),
+      firstDate: DateTime.now().add(Duration(days: 1)),
       lastDate: DateTime(2100),
     );
     if (picked != null){

@@ -1,11 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ebay_clone/Models/AuctionItem.dart';
+import 'package:ebay_clone/Provider/AuctionProvider.dart';
 import 'package:ebay_clone/Screens/AuctionDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-Widget buildAuctionCard(BuildContext context, AuctionItem auctionItem){
+Widget buildAuctionCard(BuildContext context, AuctionItem auctionItem, String documentId){
   final width = MediaQuery.of(context).size.width;
   final height = MediaQuery.of(context).size.height;
   final globalFontSize = MediaQuery.of(context).textScaleFactor;
@@ -14,6 +16,8 @@ Widget buildAuctionCard(BuildContext context, AuctionItem auctionItem){
 
   return GestureDetector(
     onTap: (){
+      Provider.of<AuctionProvider>(context, listen: false).setDocumentId(documentId);
+      Provider.of<AuctionProvider>(context, listen: false).setAuctionItem(auctionItem);
       Navigator.push(context, MaterialPageRoute(builder: (context) => AuctionDetailScreen()));
     },
     child: Card(
@@ -26,7 +30,7 @@ Widget buildAuctionCard(BuildContext context, AuctionItem auctionItem){
               width: width*0.5,
               height: height*0.25,
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: Colors.deepPurpleAccent,
                 image: DecorationImage(
                   image: NetworkImage(
                     auctionItem.imagePath,
