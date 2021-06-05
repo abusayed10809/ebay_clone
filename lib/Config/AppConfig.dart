@@ -18,4 +18,6 @@ class AppConfig{
   String userCollection = "userCollection";
   String userName = "userName";
   String userEmail = "userEmail";
+
+  String totalBidCollection = "totalBidCollection";
 }

@@ -1,5 +1,7 @@
+import 'package:ebay_clone/NavigationScreen/NavigationScreen.dart';
 import 'package:ebay_clone/Provider/AuctionProvider.dart';
 import 'package:ebay_clone/Screens/AuthScreen.dart';
+import 'package:ebay_clone/Screens/DashboardScreen.dart';
 import 'package:ebay_clone/Screens/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
             ),
         ),
       ),
-      home: currentUser==null ? AuthScreen() : HomeScreen(),
+      home: currentUser==null ? AuthScreen() : NavigationScreen(),
     );
   }
 }

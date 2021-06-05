@@ -35,6 +35,7 @@ dependencies:
   auth_buttons:
 
   provider:
+  charts_flutter:
 
   intl:
   firebase_core:

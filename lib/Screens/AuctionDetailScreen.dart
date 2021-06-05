@@ -29,6 +29,8 @@ class _AuctionDetailScreenState extends State<AuctionDetailScreen> {
 
   bool showBidClosed = false;
 
+  int maxCurrentBid = 0;
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -79,6 +81,10 @@ class _AuctionDetailScreenState extends State<AuctionDetailScreen> {
                         }
                         else if(!showBidClosed){
                           BidInfoModel bidInfoModel = BidInfoModel.jsonToString(snapshot.data.docs[index-1]);
+                          if(index==1){
+                              maxCurrentBid = bidInfoModel.bidAmount;
+                              print(maxCurrentBid);
+                          }
                           return buildBidCard(context, bidInfoModel);
                         }
                         else{
@@ -147,11 +153,7 @@ class _AuctionDetailScreenState extends State<AuctionDetailScreen> {
                           GestureDetector(
                             onTap: () async{
                               int bidAmount = int.parse(_bidTextEditingController.text.trim());
-                              if(bidAmount>=auctionItemDetail.price){
-                                Navigator.pop(context);
-                                await confirmBidAmount(bidAmount);
-                              }
-                              else{
+                              if((bidAmount<auctionItemDetail.price)){
                                 Fluttertoast.showToast(
                                     msg: "Your bid must be greater than minimum bid amount",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -161,6 +163,21 @@ class _AuctionDetailScreenState extends State<AuctionDetailScreen> {
                                     textColor: Colors.white,
                                     fontSize: globalFontSize*15
                                 );
+                              }
+                              else if(bidAmount<=maxCurrentBid){
+                                Fluttertoast.showToast(
+                                    msg: "Your bid must be greater than the current maximum bid in order to win",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: globalFontSize*15
+                                );
+                              }
+                              else{
+                                Navigator.pop(context);
+                                await confirmBidAmount(bidAmount);
                               }
                               _bidTextEditingController.text = "";
                             },
@@ -230,5 +247,11 @@ class _AuctionDetailScreenState extends State<AuctionDetailScreen> {
         _appConfig.userEmail: userEmail,
       }
     );
+
+    await FirebaseFirestore.instance.collection(_appConfig.totalBidCollection)
+      .doc(documentId)
+      .set({
+      _appConfig.bidAmount: bidAmount,
+    });
   }
 }
